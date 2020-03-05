@@ -1,1 +1,5 @@
 # SMI
+
+## Structured Reports (SR)
+
+
