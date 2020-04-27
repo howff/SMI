@@ -58,6 +58,21 @@ def test_sr_decode_PNAME():
 
 
 # ---------------------------------------------------------------------
+# 
+
+def sr_decode_ReferencedSOPSequence(rss):
+    assert isinstance(rss, list)
+    for rss_item in rss:
+        if 'ReferencedSOPInstanceUID' in rss_item:
+            return sr_get_key(rss_item, 'ReferencedSOPInstanceUID')
+    return ''
+
+def test_sr_decode_ReferencedSOPSequence():
+    assert sr_decode_ReferencedSOPSequence([]) == ''
+    assert sr_decode_ReferencedSOPSequence( [ { 'ReferencedSOPInstanceUID' : 'rsiuid' } ] ) == 'rsiuid'
+
+
+# ---------------------------------------------------------------------
 # Decode the ConceptNameCodeSequence by returning the value of CodeMeaning inside
 
 def sr_decode_ConceptNameCodeSequence(cncs):

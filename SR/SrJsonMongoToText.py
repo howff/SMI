@@ -3,6 +3,19 @@
 # in JSON format as extracted from the SMI MongoDB database.
 # Note that this is a specific format, not the same as that from dcm2json.
 
+# Usage: file.json
+# The file can contain a single JSON dict, or an array of dict.
+#   single dict - the output is written to the filename with .txt appended
+#   array of dict - the output is written to SOPInstanceUID.txt files.
+
+# Instructions for modification:
+#  Look through the items in sr_keys_to_ignore and if you decide that one of
+# those keys should be output instead of ignored then move it into the
+# sr_keys_to_extract array.
+
+# TODO:
+#  only extract certain modalities from Mongo, those that have a radiology report, the other SRs are less useful
+
 import collections
 import json
 import re
@@ -32,6 +45,7 @@ sr_keys_to_extract = [
     { 'label':'Allergies', 'tag':'Allergies', 'decode_func':Sr.sr_decode_plaintext },
     { 'label':'Ethnic Group', 'tag':'EthnicGroup', 'decode_func':Sr.sr_decode_plaintext },
     { 'label':'Referring Physician Name', 'tag':'ReferringPhysicianName', 'decode_func':Sr.sr_decode_PNAME },
+    { 'label':'Text', 'tag':'TextValue', 'decode_func':Sr.sr_decode_plaintext },
 ]
 
 
@@ -99,6 +113,53 @@ sr_keys_to_ignore = [
     'DeviceSerialNumber',
     'QueryRetrieveLevel',
     'ScheduledStepAttributesSequence',
+    'AcquisitionDate',
+    'AcquisitionTime',
+    'AdditionalPatientHistory', # XXX do we want this?
+    'AdmittingDiagnosesDescription', # XXX do we want this?
+    'BodyPartExamined', # XXX do we want this?
+    'BranchOfService',
+    'CommentsOnThePerformedProcedureStep', # XXX do we want this?
+    'CompletionFlagDescription',
+    'ConfidentialityConstraintOnPatientDataDescription',
+    'CountryOfResidence',
+    'CountsAccumulated',
+    'InstanceCreatorUID',
+    'LastMenstrualDate',
+    'MedicalRecordLocator',
+    'MilitaryRank',
+    'NameOfPhysiciansReadingStudy',
+    'ObservationDateTime',
+    'Occupation',
+    'OperatorsName',
+    'OtherPatientNames',
+    'PatientAddress',
+    'PatientBirthName',
+    'PatientBirthTime',
+    'PatientComments', # XXX do we want this?
+    'PatientInsurancePlanCodeSequence',
+    'PatientMotherBirthName',
+    'PatientReligiousPreference',
+    'PatientState',
+    'PatientTelephoneNumbers',
+    'PerformingPhysicianName',
+    'PredecessorDocumentsSequence',
+    'PregnancyStatus',
+    'QualityControlImage',
+    'ReferencedPatientSequence',
+    'ReferencedRequestSequence',
+    'RegionOfResidence',
+    'RelationshipType',
+    'RequestedProcedureCodeSequence', # XXX do we want this?
+    'RequestedProcedureComments', # XXX do we want this?
+    'ScheduledStudyStartDate',
+    'ScheduledStudyStartTime',
+    'SmokingStatus',
+    'SpatialResolution',
+    'SpecialNeeds',
+    'StorageMediaFileSetUID',
+    'StudyReadDate',
+    'StudyReadTime',
 ]
 
 
@@ -122,6 +183,8 @@ def sr_key_can_be_ignored(keystr):
     if '-Unknown' in keystr:
         return True
     if '-CSA ' in keystr: # part of SIEMENS CSA HEADER
+        return True
+    if ('-Dataset Name') in keystr: # part of GEMS_GENIE_1
         return True
     return False
 
@@ -165,23 +228,29 @@ def sr_parse_key(json_dict, json_key):
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('PersonName', ''))
                     elif value_type == 'DATETIME':
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('DateTime', ''))
+                    elif value_type == 'DATE':
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('Date', ''))
                     elif value_type == 'TEXT':
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('TextValue', ''))
                     elif value_type == 'NUM':
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_MeasuredValueSequence(cs_item['MeasuredValueSequence']))
                     elif value_type == 'CODE':
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptCodeSequence']))
+                    elif value_type == 'UIDREF':
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('UID', ''))
+                    elif value_type == 'IMAGE':
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_ReferencedSOPSequence(cs_item['ReferencedSOPSequence']))
                     elif value_type == 'CONTAINER':
                         # Sometimes it has no ContentSequence or is 'null'
                         if 'ContentSequence' in cs_item and cs_item['ContentSequence'] != None:
                             sr_output_string('', Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']))
                             sr_parse_key(cs_item, 'ContentSequence')
                     else:
-                        print('UNEXPECTED ITEM OF TYPE %s = %s' % (value_type, cs_item))
+                        print('UNEXPECTED ITEM OF TYPE %s = %s' % (value_type, cs_item), file=sys.stderr)
                 #print('ITEM %s' % cs_item)
         else:
             if not sr_key_can_be_ignored(json_key):
-                print('UNEXPECTED KEY %s' % json_key)
+                print('UNEXPECTED KEY %s' % json_key, file=sys.stderr)
 
 
 # ---------------------------------------------------------------------
@@ -189,6 +258,11 @@ def sr_parse_key(json_dict, json_key):
 # output by the MongoDB database.
 
 def sr_parse_doc(doc_name, json_dict):
+
+    output_filename = doc_name + '.txt'
+    fd = open(output_filename, 'w')
+    sys.stdout = fd
+
     sr_output_string('Document name', doc_name)
 
     # Output a set of known tags from the root of the document
@@ -223,6 +297,6 @@ if __name__ == '__main__':
     # If it is an array then process each item separately
     if isinstance(json_doc, list):
         for json_dict in json_doc:
-            sr_parse_doc(filename, json_dict)
+            sr_parse_doc(json_dict['SOPInstanceUID'], json_dict)
     else:
         sr_parse_doc(filename, json_doc)
