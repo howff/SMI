@@ -7,19 +7,41 @@ import collections
 import json
 import re
 import sys
+from DicomJson import Sr
 
+
+# ---------------------------------------------------------------------
 # List of known keys which we either parse or can safely ignore
 # (all the others will be reported during testing to ensure no content is missed).
+sr_keys_to_extract = [
+    { 'label':'Study Description', 'tag':'StudyDescription', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Study Date', 'tag':'StudyDate', 'decode_func':Sr.sr_decode_date },
+    { 'label':'Series Description', 'tag':'SeriesDescription', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Series Date', 'tag':'SeriesDate', 'decode_func':Sr.sr_decode_date },
+    { 'label':'Performed Procedure Step Description', 'tag':'PerformedProcedureStepDescription', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'ProtocolName', 'tag':'ProtocolName', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'StudyComments', 'tag':'StudyComments', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Content Date', 'tag':'ContentDate', 'decode_func':Sr.sr_decode_date },
+    { 'label':'Patient ID', 'tag':'PatientID', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Patient Name', 'tag':'PatientName', 'decode_func':Sr.sr_decode_PNAME },
+    { 'label':'Patient Birth Date', 'tag':'PatientBirthDate', 'decode_func':Sr.sr_decode_date },
+    { 'label':'Patient Sex', 'tag':'PatientSex', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Patient Age', 'tag':'PatientAge', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Patient Weight', 'tag':'PatientWeight', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Medical Alerts', 'tag':'MedicalAlerts', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Allergies', 'tag':'Allergies', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Ethnic Group', 'tag':'EthnicGroup', 'decode_func':Sr.sr_decode_plaintext },
+    { 'label':'Referring Physician Name', 'tag':'ReferringPhysicianName', 'decode_func':Sr.sr_decode_PNAME },
+]
+
+
 sr_keys_to_ignore = [
-    '_id',
-    'header',
+    '_id',        # an artefact of the MongoDB extract
+    'header',     # an artefact of the SMI MongoDB load microservice
     'InstanceCreationDate',
     'InstanceCreationTime',
     'SOPClassUID',
     'SOPInstanceUID',
-    'StudyDate',
-    'SeriesDate',
-    'ContentDate',
     'StudyTime',
     'ContentTime',
     'AccessionNumber',
@@ -27,22 +49,10 @@ sr_keys_to_ignore = [
     'ModalitiesInStudy',
     'Manufacturer',
     'InstitutionName',
-    'ReferringPhysicianName',
-    'StudyDescription',
-    'SeriesDescription',
     'ReferencedPerformedProcedureStepSequence',
-    'PatientName',
-    'PatientID',
     'TypeOfPatientID',
     'IssuerOfPatientID',
     'OtherPatientIDs',
-    'PatientBirthDate',
-    'PatientSex',
-    'PatientAge',
-    'PatientWeight',
-    'MedicalAlerts',
-    'Allergies',
-    'EthnicGroup',
     'OtherPatientIDsSequence',
     'StudyInstanceUID',
     'SeriesInstanceUID',
@@ -71,15 +81,12 @@ sr_keys_to_ignore = [
     'RequestingService',              # XXX do we want this?
     'RequestedProcedureDescription',  # XXX do we want this?
     'RequestAttributesSequence',      # XXX what is this?
-    'PerformedProcedureStepDescription',
     'PerformedProcedureStepStartDate',
     'PerformedProcedureStepStartTime',
     'PerformedProcedureStepID',
     'PerformedProcedureCodeSequence', # XXX what is this? does it ever exist?
     'PerformedProtocolCodeSequence',  # XXX what is this?
     'ReferringPhysicianName',
-    'ProtocolName',
-    'StudyComments',
     'ImageComments', # XXX do we want this?
     'TotalNumberOfExposures',
     'ExposedArea',
@@ -105,6 +112,10 @@ sr_keys_to_ignore = [
 def sr_key_can_be_ignored(keystr):
     if keystr in sr_keys_to_ignore:
         return True
+    # If already handled explicitly elsewhere it can also be ignored
+    for sr_extract_dict in sr_keys_to_extract:
+        if keystr == sr_extract_dict['tag']:
+            return True
     # We cannot definitively decode private tags, BUT some contain information which is not anywhere else, even person names!
     if '-PrivateCreator' in keystr:
         return True
@@ -113,70 +124,6 @@ def sr_key_can_be_ignored(keystr):
     if '-CSA ' in keystr: # part of SIEMENS CSA HEADER
         return True
     return False
-
-
-# ---------------------------------------------------------------------
-# Decode the string value of the PNAME tag.
-# Decode the Person's Name value which is typically encoded
-# using ^ as a separator between Surname^First^Middle^Title^Suffix
-# Returns the decoded human-readable string.
-
-def sr_decode_PNAME(pname):
-    if pname == None:
-        return ''
-    if '^' in pname:
-        pname_list = pname.split('^')
-        pname = ''
-        for ii in (3, 1, 2, 0, 4):
-            if (len(pname_list) > ii) and (len(pname_list[ii]) > 0):
-                pname = pname + pname_list[ii] + ' '
-        pname = pname.rstrip()  # remove trailing spaces
-    return pname
-
-
-def test_sr_decode_PNAME():
-    assert sr_decode_PNAME('Fukuda^Katherine M.^^^M. D.') == 'Katherine M. Fukuda M. D.'
-
-
-# ---------------------------------------------------------------------
-# Decode the ConceptNameCodeSequence by returning the value of CodeMeaning inside
-
-def sr_decode_ConceptNameCodeSequence(cncs):
-    assert isinstance(cncs, list)
-    for cncs_item in cncs:
-        if 'CodeMeaning' in cncs_item:
-            return sr_get_key(cncs_item, 'CodeMeaning')
-    return ''
-
-# ---------------------------------------------------------------------
-# Decode a MeasuredValueSequence by returning a string consisting of the
-# NumericValue inside, and having the short form of the units appended
-# eg. 23mm.
-# XXX could insert a space before the units if required
-
-def sr_decode_MeasurementUnitsCodeSequence(mucs):
-    assert isinstance(mucs, list)
-    for mucs_item in mucs:
-        # NB CodeValue pulls out the abbreviation, eg. 'mm',
-        # use CodeMeaning if you want the full name, eg. 'millimeter'
-        if 'CodeValue' in mucs_item:
-            return sr_get_key(mucs_item, 'CodeValue')
-    return ''
-
-def sr_decode_MeasuredValueSequence(mvs):
-    # Sometimes it is 'null' when no measurement was attempted
-    # A NumericValueQualifierCodeSequence would report this but we don't check for it.
-    if mvs == None:
-        return ''
-    assert isinstance(mvs, list)
-    num_str = ''
-    units_str = ''
-    for mvs_item in mvs:
-        if 'NumericValue' in mvs_item:
-            num_str = sr_get_key(mvs_item, 'NumericValue')
-        if 'MeasurementUnitsCodeSequence' in mvs_item:
-            units_str = sr_decode_MeasurementUnitsCodeSequence(mvs_item.get('MeasurementUnitsCodeSequence', ''))
-    return num_str+' '+units_str
 
 
 # ---------------------------------------------------------------------
@@ -199,25 +146,7 @@ def sr_output_string(keystr, valstr):
     if keystr == None or keystr == '':
         print('%s' % (valstr))
     else:
-        print('%s : %s' % (keystr, valstr))
-
-
-# ---------------------------------------------------------------------
-# Decode a DICOM date tag into a readable string
-
-def sr_decode_date(datestr):
-    # XXX TODO: parse YYYYMMDD and return YYYY-MM-DD ?
-    return datestr
-
-
-# ---------------------------------------------------------------------
-# Get the value of a key from a dictionary or an empty string if not present
-def sr_get_key(jsondict, jsonkey):
-    if isinstance(jsondict, collections.Mapping):
-        str = jsondict.get(jsonkey, '')
-        if str == None:
-            str = ''
-        return str
+        print('[%s] %s' % (keystr, valstr))
 
 
 # ---------------------------------------------------------------------
@@ -227,25 +156,25 @@ def sr_get_key(jsondict, jsonkey):
 
 def sr_parse_key(json_dict, json_key):
         if json_key == 'ConceptNameCodeSequence':
-            sr_output_string('', sr_decode_ConceptNameCodeSequence(json_dict[json_key]))
+            sr_output_string('', Sr.sr_decode_ConceptNameCodeSequence(json_dict[json_key]))
         elif json_key == 'ContentSequence':
             for cs_item in json_dict[json_key]:
                 if 'RelationshipType' in cs_item and 'ValueType' in cs_item:
                     value_type = cs_item['ValueType']
                     if value_type == 'PNAME':
-                        sr_output_string(sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('PersonName', ''))
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('PersonName', ''))
                     elif value_type == 'DATETIME':
-                        sr_output_string(sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('DateTime', ''))
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('DateTime', ''))
                     elif value_type == 'TEXT':
-                        sr_output_string(sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('TextValue', ''))
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('TextValue', ''))
                     elif value_type == 'NUM':
-                        sr_output_string(sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), sr_decode_MeasuredValueSequence(cs_item['MeasuredValueSequence']))
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_MeasuredValueSequence(cs_item['MeasuredValueSequence']))
                     elif value_type == 'CODE':
-                        sr_output_string(sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), sr_decode_ConceptNameCodeSequence(cs_item['ConceptCodeSequence']))
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptCodeSequence']))
                     elif value_type == 'CONTAINER':
                         # Sometimes it has no ContentSequence or is 'null'
                         if 'ContentSequence' in cs_item and cs_item['ContentSequence'] != None:
-                            sr_output_string('', sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']))
+                            sr_output_string('', Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']))
                             sr_parse_key(cs_item, 'ContentSequence')
                     else:
                         print('UNEXPECTED ITEM OF TYPE %s = %s' % (value_type, cs_item))
@@ -262,26 +191,13 @@ def sr_parse_key(json_dict, json_key):
 def sr_parse_doc(doc_name, json_dict):
     sr_output_string('Document name', doc_name)
 
-    # First extract the known or expected entities at the top level
-    sr_output_string('Study Description', sr_get_key(json_dict, 'StudyDescription'))
-    sr_output_string('Study Date', sr_decode_date(sr_get_key(json_dict, 'StudyDate')))
-    sr_output_string('Series Description', sr_get_key(json_dict, 'SeriesDescription'))
-    sr_output_string('Series Date', sr_decode_date(sr_get_key(json_dict, 'SeriesDate')))
-    sr_output_string('Performed Procedure Step Description', sr_decode_date(sr_get_key(json_dict, 'PerformedProcedureStepDescription')))
-    sr_output_string('ProtocolName', sr_decode_date(sr_get_key(json_dict, 'ProtocolName')))
-    sr_output_string('StudyComments', sr_decode_date(sr_get_key(json_dict, 'StudyComments')))
-    sr_output_string('Content Date', sr_decode_date(sr_get_key(json_dict, 'ContentDate')))
-    sr_output_string('Patient ID', sr_get_key(json_dict, 'PatientID'))
-    sr_output_string('Patient Name', sr_decode_PNAME(sr_get_key(json_dict, 'PatientName')))
-    sr_output_string('Patient Birth Date', sr_decode_date(sr_get_key(json_dict, 'PatientBirthDate')))
-    sr_output_string('Patient Sex', sr_get_key(json_dict, 'PatientSex'))
-    sr_output_string('Patient Age', sr_get_key(json_dict, 'PatientAge'))
-    sr_output_string('Patient Weight', sr_get_key(json_dict, 'PatientWeight'))
-    sr_output_string('Medical Alerts', sr_get_key(json_dict, 'MedicalAlerts'))
-    sr_output_string('Allergies', sr_get_key(json_dict, 'Allergies'))
-    sr_output_string('Ethnic Group', sr_get_key(json_dict, 'EthnicGroup'))
-    sr_output_string('Referring Physician Name', sr_decode_PNAME(sr_get_key(json_dict, 'ReferringPhysicianName')))
+    # Output a set of known tags from the root of the document
+    # This loop does the equivalent of
+    # sr_output_string('Study Date', sr_decode_date(sr_get_key(json_dict, 'StudyDate')))
+    for sr_extract_dict in sr_keys_to_extract:
+        sr_output_string(sr_extract_dict['label'], sr_extract_dict['decode_func'](Sr.sr_get_key(json_dict, sr_extract_dict['tag'])))
 
+    # Now output all the remaining tags which are not ignored
     for json_key in json_dict:
         sr_parse_key(json_dict, json_key)
 
