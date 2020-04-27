@@ -11,6 +11,20 @@ A second aim is to:
 * Provide a UI to explore the data
 * Allow themed projects (eg. a Stroke study) to provide feedback to a ML model 
 
+# How to run (simple version)
+
+The tool had to be modified to work with JSON data as output from MongoDB.
+
+Simply run `SrJsonMongoToText.py` giving it the name of a JSON file.
+The JSON file should be a single document from MongoDB, or it should be an array of documents.
+If given an array of documents it will write the output for each document to a separate file named by SOPInstanceUID.
+
+NB. to turn MongoDB output into proper array of JSON you need to
+```
+sed -e 's/ObjectID(\([^)]*\))/\1/' -s 's/NumberLong(\([^)]*\))/\1/'
+sed -e '1i['  -e '$a]'  -e 's^}$/},/'
+```
+
 # How to run
 
 * Get a DICOM SR file
