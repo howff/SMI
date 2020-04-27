@@ -275,6 +275,8 @@ def sr_parse_doc(doc_name, json_dict):
     for json_key in json_dict:
         sr_parse_key(json_dict, json_key)
 
+    fd.close()
+
 
 # ---------------------------------------------------------------------
 # Main program for testing
