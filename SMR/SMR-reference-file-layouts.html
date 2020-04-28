@@ -1,0 +1,2817 @@
+        <h3>SMR Reference File Layouts</h3>
+        
+
+  
+        
+        <a name="#1"></a>
+        <p><strong>Organisation Codes</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="6"><strong>PURCHPROV (Organisation codes)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="3">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">From</td>
+      <td>To</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">1</td>
+      <td>5</td>
+      <td>Organisation Code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">6</td>
+      <td>6</td>
+      <td>Area Code</td>
+      <td>1</td>
+      <td>HB Cypher letter</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">7</td>
+      <td>76</td>
+      <td>Organisation Name</td>
+      <td>70</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">77</td>
+      <td>101</td>
+      <td>Short Name</td>
+      <td>25</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">102</td>
+      <td>136</td>
+      <td>Address line 1</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">137</td>
+      <td>171</td>
+      <td>Address line 2</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">172</td>
+      <td>206</td>
+      <td>Address line 3</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">207</td>
+      <td>241</td>
+      <td>Address line 4</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">242</td>
+      <td>276</td>
+      <td>Address line 5</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">277</td>
+      <td>284</td>
+      <td>Postcode</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">285</td>
+      <td>285</td>
+      <td>Organisation Type</td>
+      <td>1</td>
+      <td>A = DMU<br />
+        B = GPFH<br />
+        C = NHS Trust<br />
+        D = Private Hospital<br />
+        1 = HB   Purchaser<br />
+        2 = Other National Organisation<br />
+        3 = Pseudo Purchaser<br />
+        4 =   Laboratory<br />
+        5 = Training Establishment<br />
+        6 = CSA Division<br />
+        7 = Other   Non-NHS Provider</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">286</td>
+      <td>286</td>
+      <td>Activity Status</td>
+      <td>1</td>
+      <td>0 = open<br />
+        1 = discontinued<br />
+        8 = not yet open</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">287</td>
+      <td>294</td>
+      <td>Start Date</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">295</td>
+      <td>302</td>
+      <td>Close Date</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">303</td>
+      <td>307</td>
+      <td>Superseded by</td>
+      <td>5</td>
+      <td>Organisation code of replacing organisation</td>
+    </tr>
+  </tbody>
+</table>
+
+        
+        
+        
+        
+        
+        
+        
+        <a name="#2"></a>
+        <p><strong>Location Codes</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>LOCATION (Hospital and Other Location Codes)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr valign="top">
+      <td>1</td>
+      <td>5</td>
+      <td>Location Code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>6</td>
+      <td>75</td>
+      <td>Location Name</td>
+      <td>70</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>76</td>
+      <td>110</td>
+      <td>Address line 1</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>111</td>
+      <td>145</td>
+      <td>Address line 2</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>146</td>
+      <td>180</td>
+      <td>Address line 3</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>181</td>
+      <td>215</td>
+      <td>Address line 4</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>216</td>
+      <td>250</td>
+      <td>Address line 5</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>251</td>
+      <td>258</td>
+      <td>Postcode</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>259</td>
+      <td>328</td>
+      <td>Summary Description</td>
+      <td>70</td>
+      <td>-</td>
+    </tr>
+    <tr valign="top">
+      <td>329</td>
+      <td>336</td>
+      <td>Start Date</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td>337</td>
+      <td>344</td>
+      <td>Close/Merger Date</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td>345</td>
+      <td>349</td>
+      <td>Code of Destination</td>
+      <td>5</td>
+      <td>If merge, code of Location merged with</td>
+    </tr>
+    <tr valign="top">
+      <td>350</td>
+      <td>350</td>
+      <td>GP Surgery Indicator</td>
+      <td>1</td>
+      <td>0 = no surgeries<br />
+        1 = surgeries held at this location</td>
+    </tr>
+    <tr valign="top">
+      <td>351</td>
+      <td>351</td>
+      <td>SMR00 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>352</td>
+      <td>352</td>
+      <td>SMR01 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>353</td>
+      <td>353</td>
+      <td>SMR02 Flag</td>
+      <td>1</td>
+      <td>1 = Obstetrics Specialist<br />
+        2 = Obstetrics GP<br />
+        3 = Domiciliary   (Obstetrics)<br />
+        4 = Midwife Unit only<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>354</td>
+      <td>354</td>
+      <td>SMR04 Flag</td>
+      <td>1</td>
+      <td>0 = Normally not valid<br />
+        1 = Mental Illness<br />
+		2 = Learning Disabilities<br />
+		3 = Psychiatric Unit<br />
+		5 = Mental Illness &amp;  Learning Disabilities</td>
+    </tr>
+    <tr valign="top">
+      <td>355</td>
+      <td>355</td>
+      <td>SMR06 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>356</td>
+      <td>356</td>
+      <td>SMR11 Flag</td>
+      <td>1</td>
+      <td>1 = Obstetrics Specialist<br />
+        2 = Obstetrics GP<br />
+        3 = Domiciliary   (Obstetrics)<br />
+        4 = Midwife Unit only<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>357</td>
+      <td>357</td>
+      <td>SMR20 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>358</td>
+      <td>358</td>
+      <td>SMR25 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>359</td>
+      <td>359</td>
+      <td>SMR30 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>360</td>
+      <td>360</td>
+      <td>SMR50 Flag</td>
+      <td>1</td>
+      <td>1= valid for record type<br />
+        0 = not valid</td>
+    </tr>
+    <tr valign="top">
+      <td>361</td>
+      <td>380</td>
+      <td>Filler</td>
+      <td>20</td>
+      <td>For future flags</td>
+    </tr>
+  </tbody>
+</table>
+
+        
+        
+        
+        
+        
+        
+        
+        <a name="#3"></a>
+        <p><strong>Health Care Professional No</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>HCP (Health Care Professionals Number)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>8</td>
+      <td>HCP Identification Number (PIN)</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>28</td>
+      <td>Surname</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>48</td>
+      <td>Forename</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>49</td>
+      <td>68</td>
+      <td>Second Forename</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#4"></a>
+        <p><strong>Medical, Dental & GP GMC</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>MEDDEN (Medical and Dental Staff and GP GMC   Numbers)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>7</td>
+      <td>GMC/GDC Number</td>
+      <td>7</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>27</td>
+      <td>Surname</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>47</td>
+      <td>Forename</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>67</td>
+      <td>Second Forename</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>71</td>
+      <td>Grade</td>
+      <td>4</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#5"></a>
+        <p><strong>GMC/HCP No. to Specialty</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>CONSPEC<br />
+        (cross-reference file GMC/HCP Number to   Specialty)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>8</td>
+      <td>GMC/HCP Number</td>
+      <td>8</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>12</td>
+      <td>Specialty</td>
+      <td>4</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>20</td>
+      <td>Date Started</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>28</td>
+      <td>Date Ended</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#6"></a>
+        <p><strong>Scottish GP Practices</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="6"><strong>GPPRAC (Scottish GP Practices)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="3">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td colSpan="2">1</td>
+      <td>1</td>
+      <td>HB Cypher</td>
+      <td>1</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">2</td>
+      <td>6</td>
+      <td>Practice Code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">7</td>
+      <td>41</td>
+      <td>Practice address line 1</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">42</td>
+      <td>76</td>
+      <td>Practice address line 2</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">77</td>
+      <td>111</td>
+      <td>Practice address line 3</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">112</td>
+      <td>146</td>
+      <td>Practice address line 4</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">147</td>
+      <td>154</td>
+      <td>Postcode</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">155</td>
+      <td>169</td>
+      <td>Telephone Number</td>
+      <td>15</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">170</td>
+      <td>170</td>
+      <td>GMS/PMS Indicator</td>
+      <td>1</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">171</td>
+      <td>175</td>
+      <td>CHP code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td colSpan="2">176</td>
+      <td>183</td>
+      <td>Practice Start Date</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td colSpan="2">184</td>
+      <td>191</td>
+      <td>Practice End Date</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td colSpan="2">192</td>
+      <td>199</td>
+      <td>Date Practice attained current CHP status</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td colSpan="2">200</td>
+      <td>200</td>
+      <td>Health Centre Indicator</td>
+      <td>1</td>
+      <td>H = Health Centre,<br />
+        N = not</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#7"></a>
+        <p><strong>GP Ref</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>GPREF (cross-reference file not used in   validation)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>7</td>
+      <td>GMC Number</td>
+      <td>7</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>12</td>
+      <td>GP Reference Number</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>32</td>
+      <td>GP Surname</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>52</td>
+      <td>GP Forename</td>
+      <td>20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>55</td>
+      <td>GP Initials</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>60</td>
+      <td>Practice Code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td>68</td>
+      <td>Date GP Joined Practice</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td>69</td>
+      <td>76</td>
+      <td>Date GP Left Practice</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#8"></a>
+        <p><strong>GP Branch</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>GPBRANCH (cross-reference file not used in   validation)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>5</td>
+      <td>Practice Code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>6</td>
+      <td>Surgery ID</td>
+      <td>1</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>41</td>
+      <td>Practice address line 1</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>76</td>
+      <td>Practice address line 2</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>111</td>
+      <td>Practice address line 3</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>146</td>
+      <td>Practice address line 4</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>147</td>
+      <td>154</td>
+      <td>Postcode</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>155</td>
+      <td>169</td>
+      <td>Telephone Number</td>
+      <td>15</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#9"></a>
+        <p><strong>GMC/HCP to Provider Code</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>CONSPROV<br />
+        (cross-reference file GMC/HCP Number to Provider   Code)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>8</td>
+      <td>GMC/HCP Number</td>
+      <td>8</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>13</td>
+      <td>Provider</td>
+      <td>5</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>21</td>
+      <td>Date Started</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>29</td>
+      <td>Date Ended</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#10"></a>
+        <p><strong>Provider to Location to Spec</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>PROVLOCSPEC<br />
+        (cross-reference file Provider to Location to   Specialty)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>5</td>
+      <td>Provider</td>
+      <td>5</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>10</td>
+      <td>Location</td>
+      <td>5</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>14</td>
+      <td>Specialty</td>
+      <td>4</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>22</td>
+      <td>Date Started</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>30</td>
+      <td>Date Ended</td>
+      <td>8</td>
+      <td>ccyymmdd</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#11"></a>
+        <p><strong>Rest of UK GP Practices</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>UKGPPRAC (Rest of UK GP Practices)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>6</td>
+      <td>Practice Code</td>
+      <td>6</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>41</td>
+      <td>Practice address line 1</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>76</td>
+      <td>Practice address line 2</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>111</td>
+      <td>Practice address line 3</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>146</td>
+      <td>Practice address line 4</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>147</td>
+      <td>181</td>
+      <td>Practice address line 5</td>
+      <td>35</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>182</td>
+      <td>189</td>
+      <td>Postcode</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#12"></a>
+        <p><strong>Specialty</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>SPECIALTY</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4</td>
+      <td>Specialty Code</td>
+      <td>4</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>54</td>
+      <td>Specialty Description</td>
+      <td>50</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>57</td>
+      <td>Lower Age (in years)</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>60</td>
+      <td>Upper Age (in years)</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+        
+        
+        
+        
+        
+        
+        
+        <a name="#13"></a>
+        <p><strong>Specialty to Record Type</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>SPECRTYPE (cross-reference file Specialty to Record   Type)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4</td>
+      <td>Specialty Code</td>
+      <td>4</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>6</td>
+      <td>SMR Record Type</td>
+      <td>2</td>
+      <td>Key</td>
+    </tr>
+  </tbody>
+</table>
+
+        
+        
+        
+        
+        
+        
+        
+        <a name="#14"></a>
+        <p><strong>Significant Facility</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>FACILITY (Significant Facilities)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>Significant Facility Code</td>
+      <td>2</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>52</td>
+      <td>Facility Description</td>
+      <td>50</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>55</td>
+      <td>Lower Age (in years)</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>58</td>
+      <td>Upper Age (in years)</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#15"></a>
+        <p><strong>Significant Facility to Record Type</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>FACRTYPE<br />
+        (cross-reference file Significant Facility to   Record Type)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>Significant Facility Code</td>
+      <td>2</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4</td>
+      <td>SMR Record Type</td>
+      <td>2</td>
+      <td>Key</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#16"></a>
+        <p><strong>Specialty to Significant Facility</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>SPECFAC<br />
+        (cross-reference file Specialty to Significant   Facility)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4</td>
+      <td>Specialty Code</td>
+      <td>4</td>
+      <td>Key</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>6</td>
+      <td>Significant Facility Code</td>
+      <td>2</td>
+      <td>Key</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <a name="#17"></a>
+        <p><strong>Clinical Facility</strong></p>
+        <table border="1" cellSpacing="1" cellPadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>CLINFACIL (Clinical Facilities)</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>Clinical Facility Code</td>
+      <td>2</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>52</td>
+      <td>Facility Description</td>
+      <td>50</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>55</td>
+      <td>Lower Age (in years)</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>58</td>
+      <td>Upper Age (in years)</td>
+      <td>3</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        
+        
+        
+        
+        
+        <p><strong>ICD10</strong></p>
+        <table id="icd10" border="1" cellSpacing="1" cellPadding="3"  >
+          <tbody>
+            <tr>
+              <td valign="top" colSpan="2">Position</td>
+              <td valign="top" rowSpan="2" >Data item</td>
+              <td valign="top" rowSpan="2" >Size</td>
+              <td valign="top" rowSpan="2" >Comments</td>
+            </tr>
+            <tr>
+              <td valign="top" >From</td>
+              <td valign="top" >To</td>
+            </tr>
+            <tr>
+              <td  valign="top" >-</td>
+              <td valign="top" >-</td>
+              <td style="background-color:#dddddd;" valign="top" colSpan="3"><strong>Key Fields</strong></td>
+            </tr>
+            <tr>
+              <td valign="top" >1</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Filler</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Not used</td>
+            </tr>
+            <tr>
+              <td valign="top" >2</td>
+              <td valign="top" >2</td>
+              <td valign="top" >Code1 1st Digit</td>
+              <td valign="top" >1</td>
+              <td valign="top" >&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top" >3</td>
+              <td valign="top" >5</td>
+              <td valign="top" >Code1 Digits 2-4</td>
+              <td valign="top" >3</td>
+              <td valign="top" >Numeric but 4th digit "X" if true 3 digit   code</td>
+            </tr>
+            <tr>
+              <td valign="top" >6</td>
+              <td valign="top" >6</td>
+              <td valign="top" >Key Sort</td>
+              <td valign="top" >1</td>
+              <td valign="top" >space = ordinary code<br />
+                A = Asterisk code<br />
+                B =   Asterisk-Dagger pair<br />
+                D = Dagger code<br />
+                P = Dagger-Asterisk pair</td>
+            </tr>
+            <tr>
+              <td valign="top" >7</td>
+              <td valign="top" >7</td>
+              <td valign="top" >Code 2 1st Digit</td>
+              <td valign="top" >1</td>
+              <td valign="top" >&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top" >8</td>
+              <td valign="top" >10</td>
+              <td valign="top" >Code 2 Digits 2-4</td>
+              <td valign="top" >3</td>
+              <td valign="top" >Numeric but 4th digit "X" if true 3 digit   code</td>
+            </tr>
+            <tr>
+              <td valign="top" >11</td>
+              <td valign="top" >11</td>
+              <td valign="top" >Code 1 5th Digit</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Numeric</td>
+            </tr>
+            <tr>
+              <td valign="top" >12</td>
+              <td valign="top" >12</td>
+              <td valign="top" >Code 2 5th Digit</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Numeric</td>
+            </tr>
+            <tr>
+              <td height="251" valign="top" >13
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p></td>
+              <td height="251" valign="top" >13</td>
+              <td height="251" valign="top" >Record Type</td>
+              <td height="251" valign="top" >1</td>
+              <td height="251" valign="top" >1 = Chapter Heading<br />
+                2 = Group Heading<br />
+                3 = 3-digit Code Heading<br />
+                4 =   Single 4 digit Code Description<br />
+                5 = Single 4 digit Dagger/Asterisk Code   Description<br />
+                6 = Validation rules at 4 digit single code or D4A4 level<br />
+                7 =   Validation rules at 5 digit single code or D5A4<br />
+                8 = Dagger/Asterisk pair   Description at D4A5 or D5A5 level</td>
+            </tr>
+            <tr>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+              <td valign="top" ><strong>Other common fields</strong></td>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td valign="top" >14</td>
+              <td valign="top" >17</td>
+              <td valign="top" >Source</td>
+              <td valign="top" >4</td>
+              <td valign="top" >Not applicable</td>
+            </tr>
+            <tr>
+              <td valign="top" >18</td>
+              <td valign="top" >23</td>
+              <td valign="top" >Last Updated Date</td>
+              <td valign="top" >6</td>
+              <td valign="top" >yymmdd</td>
+            </tr>
+            <tr>
+              <td valign="top" >24</td>
+              <td valign="top" >97</td>
+              <td valign="top" >Code Description Text</td>
+              <td valign="top" >74</td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td height="105" valign="top" >98</td>
+              <td height="105" valign="top" >98</td>
+              <td height="105" valign="top" >Code1 5th Digit Ind (not Record Type 4) or   Code Type Ind (Record Type 4 Only)<br /></td>
+              <td height="105" valign="top" >1<br /><br />
+                1</td>
+              <td height="105" valign="top" >0 = No<br />
+                1 = Yes<br />
+                0 = Ordinary Code<br />
+                1 = Absolute Dagger<br />
+                2 = Absolute   Asterisk</td>
+            </tr>
+            <tr>
+              <td valign="top" >99</td>
+              <td valign="top" >108</td>
+              <td valign="top" >Code1 5th Digit Acceptable (not Record Type 4)</td>
+              <td valign="top" >1x10</td>
+              <td valign="top" >0 = No<br />
+                1 = Yes</td>
+            </tr>
+            <tr>
+              <td height="62" valign="top" >109</td>
+              <td height="62" valign="top" >109</td>
+              <td height="62" valign="top" >Code2 5th Digit Ind (not Record Type 4)<br />
+              </td>
+              <td height="62" valign="top" >1</td>
+              <td height="62" valign="top" >0 = No<br />
+                1 = Yes<br />
+                2 = Unlikely<br /></td>
+            </tr>
+            <tr>
+              <td valign="top" >110</td>
+              <td valign="top" >119</td>
+              <td valign="top" >Code 2 5th Digit Acceptable (not Record Type 4)</td>
+              <td valign="top" >1<br /><br />
+                x10</td>
+              <td valign="top" >0 = No<br />
+                1 = Yes</td>
+            </tr>
+            <tr>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+              <td valign="top" ><strong>SMR01 Validation</strong></td>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td valign="top" >120</td>
+              <td valign="top" >120</td>
+              <td valign="top" >Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td height="102" valign="top" >121</td>
+              <td height="102" valign="top" >121</td>
+              <td height="102" valign="top" >Sex</td>
+              <td height="102" valign="top" >1</td>
+              <td height="102" valign="top" >0 = no check<br />
+                1 = error if Male<br />
+                2 = error if Female<br />
+                3 = query if   Male<br />
+                4 = query if Female</td>
+            </tr>
+            <tr>
+              <td height="45" valign="top" >122</td>
+              <td height="45" valign="top" >122</td>
+              <td height="45" valign="top" >Rare Ind</td>
+              <td height="45" valign="top" >1</td>
+              <td height="45" valign="top" >0 = not rare<br />
+                1 = rare (query)</td>
+            </tr>
+            <tr>
+              <td valign="top" >123</td>
+              <td valign="top" >126</td>
+              <td valign="top" >Filler</td>
+              <td valign="top" >4</td>
+              <td valign="top" >Not used</td>
+            </tr>
+            <tr>
+              <td valign="top" >127</td>
+              <td valign="top" >129</td>
+              <td valign="top" >Minimum Age</td>
+              <td valign="top" >3</td>
+              <td valign="top" >value in years</td>
+            </tr>
+            <tr>
+              <td valign="top" >130</td>
+              <td valign="top" >132</td>
+              <td valign="top" >Maximum Age</td>
+              <td valign="top" >3</td>
+              <td valign="top" >value in years</td>
+            </tr>
+            <tr>
+              <td height="101" valign="top" >133</td>
+              <td height="101" valign="top" >142</td>
+              <td height="101" valign="top" >Type of Admission</td>
+              <td height="101" valign="top" >1<br /><br />
+                x10</td>
+              <td height="101" valign="top" >in each position<br />
+                0 =allowed<br />
+                1 = not allowed<br />
+                for determination of TOA   see below</td>
+            </tr>
+            <tr>
+              <td height="64" valign="top" >143</td>
+              <td height="64" valign="top" >143</td>
+              <td height="64" valign="top" >Discharge</td>
+              <td height="64" valign="top" >1</td>
+              <td height="64" valign="top" >0 = no check<br />
+                1 = unlikely if died<br />
+                2 = error if survivor</td>
+            </tr>
+            <tr>
+              <td valign="top" >144</td>
+              <td valign="top" >148</td>
+              <td valign="top" >Maximum Wait</td>
+              <td valign="top" >5</td>
+              <td valign="top" >value in days</td>
+            </tr>
+            <tr>
+              <td valign="top" >149</td>
+              <td valign="top" >153</td>
+              <td valign="top" >Maximum Stay</td>
+              <td valign="top" >5</td>
+              <td valign="top" >value in days</td>
+            </tr>
+            <tr>
+              <td valign="top" >154</td>
+              <td valign="top" >154</td>
+              <td valign="top" >Filler</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Not used</td>
+            </tr>
+            <tr>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+              <td valign="top" ><strong>SMR02 Validation</strong></td>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td valign="top" >155</td>
+              <td valign="top" >155</td>
+              <td valign="top" >Antenatal Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td valign="top" >156</td>
+              <td valign="top" >156</td>
+              <td valign="top" >Transfer Antenatal Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td valign="top" >157</td>
+              <td valign="top" >157</td>
+              <td valign="top" >Delivery Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td valign="top" >158</td>
+              <td valign="top" >158</td>
+              <td valign="top" >Post Natal Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td valign="top" >159</td>
+              <td valign="top" >159</td>
+              <td valign="top" >Abortion Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td valign="top" >160</td>
+              <td valign="top" >160</td>
+              <td valign="top" >Filler</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Not used</td>
+            </tr>
+            <tr>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+              <td valign="top" ><strong>SMR04 Validation</strong></td>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td valign="top" >161</td>
+              <td valign="top" >161</td>
+              <td valign="top" >Applicability</td>
+              <td valign="top" >1</td>
+              <td valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td height="96" valign="top" >162</td>
+              <td height="96" valign="top" >162</td>
+              <td height="96" valign="top" >Sex</td>
+              <td height="96" valign="top" >1</td>
+              <td height="96" valign="top" >0 = no check<br />
+                1 = error if Male<br />
+                2 = error if Female<br />
+                3 = query if   Male<br />
+                4 = query if Female</td>
+            </tr>
+            <tr>
+              <td height="47" valign="top" >163</td>
+              <td height="47" valign="top" >163</td>
+              <td height="47" valign="top" >Rare Ind</td>
+              <td height="47" valign="top" >1</td>
+              <td height="47" valign="top" >0 = not rare<br />
+                1 = rare (query)</td>
+            </tr>
+            <tr>
+              <td valign="top" >164</td>
+              <td valign="top" >166</td>
+              <td valign="top" >Minimum Age</td>
+              <td valign="top" >3</td>
+              <td valign="top" >value in years</td>
+            </tr>
+            <tr>
+              <td valign="top" >167</td>
+              <td valign="top" >169</td>
+              <td valign="top" >Maximum Age</td>
+              <td valign="top" >3</td>
+              <td valign="top" >value in years</td>
+            </tr>
+            <tr>
+              <td valign="top" >170</td>
+              <td valign="top" >174</td>
+              <td valign="top" >Maximum Stay</td>
+              <td valign="top" >5</td>
+              <td valign="top" >value in days</td>
+            </tr>
+            <tr>
+              <td valign="top" >175</td>
+              <td valign="top" >175</td>
+              <td valign="top" >Filler</td>
+              <td valign="top" >1</td>
+              <td valign="top" >Not used</td>
+            </tr>
+            <tr>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+              <td valign="top" ><strong>SMR06 and SMR20 Validation</strong></td>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td valign="top" >176</td>
+              <td valign="top" >208</td>
+              <td valign="top" >Filler</td>
+              <td valign="top" >33</td>
+              <td valign="top" >Not currently applicable to Coppish</td>
+            </tr>
+            <tr>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+              <td valign="top" ><strong>SMR11 Validation</strong></td>
+              <td valign="top" ></td>
+              <td valign="top" ></td>
+            </tr>
+            <tr>
+              <td height="30" valign="top" >209</td>
+              <td height="30" valign="top" >209</td>
+              <td height="30" valign="top" >Applicability</td>
+              <td height="30" valign="top" >1</td>
+              <td height="30" valign="top" >value = 0-9 see table below</td>
+            </tr>
+            <tr>
+              <td height="104" valign="top" >210</td>
+              <td height="104" valign="top" >210</td>
+              <td height="104" valign="top" >Sex</td>
+              <td height="104" valign="top" >1</td>
+              <td height="104" valign="top" >0 = no check<br />
+                1 = error if Male<br />
+                2 = error if Female<br />
+                3 = query if   Male<br />
+                4 = query if Female</td>
+            </tr>
+            <tr>
+              <td height="45" valign="top" >211</td>
+              <td height="45" valign="top" >211</td>
+              <td height="45" valign="top" >Discharge</td>
+              <td height="45" valign="top" >1</td>
+              <td height="45" valign="top" >0 = no check<br />
+                1 = unlikely if died</td>
+            </tr>
+            <tr>
+              <td height="30" valign="top" >212</td>
+              <td height="30" valign="top" >212</td>
+              <td height="30" valign="top" >Filler</td>
+              <td height="30" valign="top" >1</td>
+              <td height="30" valign="top" >Not used</td>
+            </tr>
+            <tr>
+              <td>213</td>
+              <td>220</td>
+              <td>Start date</td>
+              <td>8</td>
+              <td>yyyymmdd</td>
+            </tr>
+            <tr>
+              <td>221</td>
+              <td>228</td>
+              <td>End date</td>
+              <td>8</td>
+              <td>yyyymmdd</td>
+            </tr>
+            <tr>
+              <td>229</td>
+              <td>483</td>
+              <td>Full description text</td>
+              <td>255</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+
+
+		<p><strong>Table of Applicability Codes for all SMR 01, 02, 04 and 11</strong></p>
+        <table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td>Applicability Value</td>
+      <td>Main Condition</td>
+      <td>Other Conditions</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>Error</td>
+      <td>Error</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Accept</td>
+      <td>Accept</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Error</td>
+      <td>Accept</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Query</td>
+      <td>Accept</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Query</td>
+      <td>Query</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Accept</td>
+      <td>Query</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Error</td>
+      <td>Query</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Query</td>
+      <td>Error</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Accept</td>
+      <td>Error</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Error if no 5th digit</td>
+      <td>Error if no 5th digit</td>
+    </tr>
+  </tbody>
+</table>
+
+		<p><strong>Determination of Type of Admission (TOA) for SMR01 and SMR50 :
+(Note - check required only on Main Condition if Waiting List Type = 0, 1 or 2 or
+on Main Condition and FIRST occurrence of a Chap XX (V01-Y98)
+if Waiting List Type = 8</strong></p>
+<table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td>Coppish Admission Type</td>
+      <td>Coppish W/L Type</td>
+      <td>Coppish Admission/Transfer From</td>
+      <td>TOA Code</td>
+      <td>TOA Description</td>
+    </tr>
+    <tr>
+      <td>10, 11, 12, 19, 40, 48</td>
+      <td>0</td>
+      <td>any</td>
+      <td>0</td>
+      <td>Deferred</td>
+    </tr>
+    <tr>
+      <td>10, 11, 12, 19, 40, 48</td>
+      <td>1</td>
+      <td>any</td>
+      <td>1</td>
+      <td>Wait</td>
+    </tr>
+    <tr>
+      <td>10, 11, 12, 19</td>
+      <td>8</td>
+      <td>any</td>
+      <td>1</td>
+      <td>Wait</td>
+    </tr>
+    <tr>
+      <td>10, 11, 12, 19, 40, 48</td>
+      <td>2</td>
+      <td>any</td>
+      <td>2</td>
+      <td>Planned Rpt</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>any</td>
+      <td>any</td>
+      <td>3</td>
+      <td>Transfer</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>any</td>
+      <td>any</td>
+      <td>4</td>
+      <td>Emerg-S-I</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>any</td>
+      <td>any</td>
+      <td>5</td>
+      <td>Emerg-RTA</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>any</td>
+      <td>any</td>
+      <td>6</td>
+      <td>Emerg-HM-A</td>
+    </tr>
+    <tr>
+      <td>34, 35</td>
+      <td>any</td>
+      <td>any</td>
+      <td>7</td>
+      <td>Emerg-OTH-A</td>
+    </tr>
+    <tr>
+      <td>20, 21, 22, 30, 36, 39</td>
+      <td>any</td>
+      <td>any</td>
+      <td>8</td>
+      <td>Emerg-OTH</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>any</td>
+      <td>4_ or 5_</td>
+      <td>3</td>
+      <td>Transfer</td>
+    </tr>
+    <tr>
+      <td>40, 48</td>
+      <td>8</td>
+      <td>4_ or 5_</td>
+      <td>3</td>
+      <td>Transfer</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>any</td>
+      <td>not 4_ or 5_</td>
+      <td>8</td>
+      <td>Emerg-OTH</td>
+    </tr>
+    <tr>
+      <td>40, 48</td>
+      <td>8</td>
+      <td>not 4_ or 5_</td>
+      <td>8</td>
+      <td>Emerg-OTH</td>
+    </tr>
+  </tbody>
+</table>
+		<p><strong>1) The base field is now Admission Type with Waiting List and Admission/Transfer From codes used as supplementary fields in order to determine TOA.<br />
+2) When any combination of the conditions is satisfied then exit from the mapping with the TOA determined.<br />
+3) If there no match on the conditions then no validation against TOA can be carried out.</strong>
+
+		<p><strong>Determination of SMR02 Type of Episode for Applicability Checks :</strong></p>
+        <table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td><strong>Admission Reason</strong></td>
+      <td><strong>Condition on Discharge</strong></td>
+      <td><strong>Discharge/Transfer To</strong></td>
+      <td><strong>Type of Episode</strong></td>
+    </tr>
+    <tr>
+      <td>22, 23, 28</td>
+      <td>1</td>
+      <td>10-13, 18-24, 28-33, 38, 39</td>
+      <td>Antenatal</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>5</td>
+      <td>not 70</td>
+      <td>Antenatal</td>
+    </tr>
+    <tr>
+      <td>22, 23, 28</td>
+      <td>1</td>
+      <td>40, 42, 43, 44, 47, 48, 49, 4A, 4D, 4F, 4G, 50, 52, 53, 54, 57, 58, 59, 5A,   5D, 5F, 5G, 60-62, 68, 69</td>
+      <td>Transfer</td>
+    </tr>
+    <tr>
+      <td>20, 22-24, 28</td>
+      <td>3</td>
+      <td></td>
+      <td>Delivery</td>
+    </tr>
+    <tr>
+      <td>25, 26</td>
+      <td>4</td>
+      <td>not 70</td>
+      <td>Postpartum</td>
+    </tr>
+    <tr>
+      <td>21, 22, 28</td>
+      <td>2, 8</td>
+      <td>not 70</td>
+      <td>Abortion</td>
+    </tr>
+  </tbody>
+</table>
+
+        
+        
+        <p><strong>OPCS4</strong></p>
+        <table id="opcs4" border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td valign="top" colSpan="2">Position</td>
+      <td valign="top" rowSpan="2">Data item</td>
+      <td valign="top" rowSpan="2">Size</td>
+      <td valign="top" rowSpan="2">Comments</td>
+    </tr>
+    <tr>
+      <td valign="top">From</td>
+      <td valign="top">To</td>
+    </tr>
+    <tr>
+      <td  valign="top">-</td>
+      <td valign="top">-</td>
+      <td style="background-color:#dddddd;" valign="top" colSpan="3"><strong>Key Fields</strong></td>
+    </tr>
+    <tr valign="top">
+      <td>1</td>
+      <td>1</td>
+      <td>Chapter</td>
+      <td>1</td>
+      <td>A to "H", "J" to "Z"</td>
+    </tr>
+    <tr valign="top">
+      <td>2</td>
+      <td>4</td>
+      <td>Code Digits 2-4</td>
+      <td>3</td>
+      <td>Numeric</td>
+    </tr>
+    <tr valign="top">
+      <td>5</td>
+      <td>5</td>
+      <td>Pair Code Chapter</td>
+      <td>1</td>
+      <td>A to "H", "J" to "Z"</td>
+    </tr>
+    <tr valign="top">
+      <td>6</td>
+      <td>8</td>
+      <td>Pair Code Digits 2-4</td>
+      <td>3</td>
+      <td>Numeric</td>
+    </tr>
+    <tr valign="top">
+      <td>9</td>
+      <td>9</td>
+      <td>Record Type</td>
+      <td>1</td>
+      <td>1 = Chapter Heading<br />
+        3 = 3-digit Code Heading<br />
+        6 = Validation   record<br />
+        8 = Pair record</td>
+    </tr>
+  </tbody>
+</table><br />
+
+<table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td valign="top" colSpan="2">Position</td>
+      <td valign="top" rowSpan="2">Data item</td>
+      <td valign="top" rowSpan="2">Size</td>
+      <td valign="top" rowSpan="2">Comments</td>
+    </tr>
+    <tr>
+      <td valign="top">From</td>
+      <td valign="top">To</td>
+    </tr>
+    <tr>
+      <td  valign="top">-</td>
+      <td valign="top">-</td>
+      <td style="background-color:#dddddd;" valign="top" colSpan="3"><strong>Other Common Fields</strong></td>
+    </tr>
+    <tr valign="top">
+      <td>10</td>
+      <td>13</td>
+      <td>Source</td>
+      <td>4</td>
+      <td>Not applicable</td>
+    </tr>
+    <tr valign="top">
+      <td>14</td>
+      <td>19</td>
+      <td>Last Updated Date</td>
+      <td>6</td>
+      <td>yymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td>20</td>
+      <td>93</td>
+      <td>Code Description Text</td>
+      <td>74</td>
+      <td></td>
+    </tr>
+    <tr valign="top">
+      <td>94</td>
+      <td>97</td>
+      <td>Short List Code</td>
+      <td>4</td>
+      <td>Not used</td>
+    </tr>
+  </tbody>
+</table><br />
+
+<table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td valign="top" colSpan="2">Position</td>
+      <td valign="top" rowSpan="2">Data item</td>
+      <td valign="top" rowSpan="2">Size</td>
+      <td valign="top" rowSpan="2">Comments</td>
+    </tr>
+    <tr>
+      <td valign="top">From</td>
+      <td valign="top">To</td>
+    </tr>
+    <tr>
+      <td  valign="top">-</td>
+      <td valign="top">-</td>
+      <td style="background-color:#dddddd;" valign="top" colSpan="3"><strong>SMR01 Validation</strong></td>
+    </tr>
+    <tr valign="top">
+      <td>98</td>
+      <td>98</td>
+      <td>Applicability</td>
+      <td>1</td>
+      <td>0 = error1 = valid<br />
+        4 = query</td>
+    </tr>
+    <tr valign="top">
+      <td>99</td>
+      <td>99</td>
+      <td>Pair Applicability</td>
+      <td>1</td>
+      <td>0 = single or pair<br />
+        1 = single<br />
+        2 = pair</td>
+    </tr>
+    <tr valign="top">
+      <td>100</td>
+      <td>100</td>
+      <td>Pair Position</td>
+      <td>1</td>
+      <td>0 = not appropriate<br />
+        1 = first<br />
+        2 = second<br />
+        3 = first or   second</td>
+    </tr>
+    <tr valign="top">
+      <td>101</td>
+      <td>101</td>
+      <td>Associated Chapter</td>
+      <td>1</td>
+      <td>Specified chapter "A" to "Z"<br />
+        = missing<br />
+        "&amp;" = any   chapter</td>
+    </tr>
+    <tr valign="top">
+      <td>102</td>
+      <td>103</td>
+      <td>Preference Weight</td>
+      <td>2</td>
+      <td></td>
+    </tr>
+    <tr valign="top">
+      <td>104</td>
+      <td>104</td>
+      <td>Day Case Applicability</td>
+      <td>1</td>
+      <td>0 = error<br />
+        1 = valid<br />
+        4 = query</td>
+    </tr>
+    <tr valign="top">
+      <td>105</td>
+      <td>105</td>
+      <td>Sex</td>
+      <td>1</td>
+      <td>0 = valid for any sex<br />
+        1 = error if male<br />
+        2 = error if female<br />
+        3 =   query if male<br />
+        4 = query if female</td>
+    </tr>
+    <tr valign="top">
+      <td>106</td>
+      <td>106</td>
+      <td>Rarity</td>
+      <td></td>
+      <td>0 = not rare<br />
+        1 = rare</td>
+    </tr>
+    <tr valign="top">
+      <td>107</td>
+      <td>109</td>
+      <td>Minimum Age</td>
+      <td>3</td>
+      <td>value in years</td>
+    </tr>
+    <tr valign="top">
+      <td>110</td>
+      <td>112</td>
+      <td>Maximum Age</td>
+      <td>3</td>
+      <td>value in years</td>
+    </tr>
+  </tbody>
+</table><br />
+
+<table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td valign="top" colSpan="2">Position</td>
+      <td valign="top" rowSpan="2" >Data item</td>
+      <td valign="top" rowSpan="2" >Size</td>
+      <td valign="top" rowSpan="2" >Comments</td>
+    </tr>
+    <tr>
+      <td valign="top" >From</td>
+      <td valign="top" >To</td>
+    </tr>
+    <tr>
+      <td  valign="top" >-</td>
+      <td valign="top" >-</td>
+      <td style="background-color:#dddddd;" valign="top" colSpan="3"><strong>SMR02 Validation</strong></td>
+    </tr>
+    <tr valign="top">
+      <td >113</td>
+      <td >113</td>
+      <td >Applicability</td>
+      <td >1</td>
+      <td >0 = error<br />
+        1 = valid<br />
+        4 = query</td>
+    </tr>
+    <tr valign="top">
+      <td >114</td>
+      <td >114</td>
+      <td >Pair Applicability</td>
+      <td >1</td>
+      <td >0 = single or pair<br />
+        1 = single<br />
+        2 = pair</td>
+    </tr>
+    <tr valign="top">
+      <td >115</td>
+      <td >115</td>
+      <td >Pair Position</td>
+      <td >1</td>
+      <td >0 = not appropriate<br />
+        1 = first<br />
+        2 = second<br />
+        3 = first or   second</td>
+    </tr>
+    <tr valign="top">
+      <td >116</td>
+      <td >116</td>
+      <td >Associated Chapter</td>
+      <td >1</td>
+      <td >Specified chapter "A" to "Z"<br />
+        = missing<br />
+        "&amp;" = any   chapter</td>
+    </tr>
+  </tbody>
+</table><br />
+
+<table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr>
+      <td valign="top" colSpan="2">Position</td>
+      <td valign="top" rowSpan="2">Data item</td>
+      <td valign="top" rowSpan="2">Size</td>
+      <td valign="top" rowSpan="2">Comments</td>
+    </tr>
+    <tr>
+      <td valign="top">From</td>
+      <td valign="top">To</td>
+    </tr>
+    <tr>
+      <td  valign="top">-</td>
+      <td valign="top">-</td>
+      <td style="background-color:#dddddd;" valign="top" colSpan="3"><strong>SMR11 Validation</strong></td>
+    </tr>
+    <tr valign="top">
+      <td>117</td>
+      <td>117</td>
+      <td>Applicability</td>
+      <td>1</td>
+      <td>0 = error<br />
+        1 = valid<br />
+        4 = query</td>
+    </tr>
+    <tr valign="top">
+      <td>118</td>
+      <td>118</td>
+      <td>Pair Applicability</td>
+      <td>1</td>
+      <td>0 = single or pair<br />
+        1 = single<br />
+        2 = pair</td>
+    </tr>
+    <tr valign="top">
+      <td>119</td>
+      <td>119</td>
+      <td>Pair Position</td>
+      <td>1</td>
+      <td>0 = not appropriate<br />
+        1 = first<br />
+        2 = second<br />
+        3 = first or   second</td>
+    </tr>
+    <tr valign="top">
+      <td>120</td>
+      <td>120</td>
+      <td>Associated Chapter</td>
+      <td>1</td>
+      <td>Specified chapter "A" to "Z"<br />
+        &lt; space&gt; = missing<br />
+        "&amp;" = any   chapter</td>
+    </tr>
+    <tr valign="top">
+      <td>121</td>
+      <td>122</td>
+      <td>Preference Weight</td>
+      <td>2</td>
+      <td> </td>
+    </tr>
+    <tr valign="top">
+      <td>123</td>
+      <td>123</td>
+      <td>Sex</td>
+      <td>1</td>
+      <td>0 = valid for any sex<br />
+        1 = error if male<br />
+        2 = error if female<br />
+        3 =   query if male<br />
+        4 = query if female</td>
+    </tr>
+    <tr valign="top">
+      <td>124</td>
+      <td>126</td>
+      <td>Minimum Age</td>
+      <td>3</td>
+      <td>value in years</td>
+    </tr>
+    <tr valign="top">
+      <td>127</td>
+      <td>129</td>
+      <td>Maximum Age</td>
+      <td>3</td>
+      <td>value in years</td>
+    </tr>
+    <tr valign="top">
+      <td>130</td>
+      <td>137</td>
+      <td>Start date</td>
+      <td>8</td>
+      <td>yyyymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td>138</td>
+      <td>145</td>
+      <td>End date</td>
+      <td>8</td>
+      <td>yyyymmdd</td>
+    </tr>
+    <tr valign="top">
+      <td>146</td>
+      <td>400</td>
+      <td>Full description text</td>
+      <td>255</td>
+      <td>yyyymmdd</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        <a name="#20"></a>
+        <p><strong>Postcodes</strong></p>
+        <table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>Postcodes :</strong> Common Fields</td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>7</td>
+      <td>Postcode</td>
+      <td>7</td>
+      <td>&lt; Outcode left justified&gt;&lt; Incode&gt;</td>
+    </tr>
+  </tbody>
+</table>
+        
+        
+        <a name="#21"></a>
+        <p><strong>Loc_HB</strong></p>
+        <table border="1" cellspacing="1" cellpadding="3"  >
+  <tbody>
+    <tr valign="top">
+      <td colSpan="5"><strong>LOC_HB</strong></td>
+    </tr>
+    <tr valign="top">
+      <td colSpan="2">Position</td>
+      <td rowSpan="2">Data item</td>
+      <td rowSpan="2">Size</td>
+      <td rowSpan="2">Comments</td>
+    </tr>
+    <tr valign="top">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>5</td>
+      <td>Location Code</td>
+      <td>5</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>6</td>
+      <td>NHS Area cypher</td>
+      <td>1</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <td>ISD NHS Area number</td>
+      <td>2</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>16</td>
+      <td>Start date</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>24</td>
+      <td>End date</td>
+      <td>8</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+        
+    <p><strong>DENTREF (Scottish Dentists)</strong></p>
+    
+    <table border="1" cellspacing="1" cellpadding="3"   id="dentref">
+        <tbody>
+            <tr>
+                <td colspan="2">Position</td>
+                <td>Data item</td>
+                <td>Size</td>
+                <td>Comments</td>
+            </tr>
+            <tr>
+                <td>From</td>
+                <td>To</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>6</td>
+                <td>Dentist ID</td>
+                <td>6</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>12</td>
+                <td>GDC Number</td>
+                <td>6</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>18</td>
+                <td>Practice Code</td>
+                <td>6</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>28</td>
+                <td>Title</td>
+                <td>10</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td>63</td>
+                <td>Forename</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>64</td>
+                <td>98</td>
+                <td>Middle Names</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>99</td>
+                <td>133</td>
+                <td>Surname</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>134</td>
+                <td>141</td>
+                <td>Start Date</td>
+                <td>8</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>142</td>
+                <td>149</td>
+                <td>End Date</td>
+                <td>8</td>
+                <td>-</td>
+            </tr>
+       </tbody>
+    </table>
+    
+    
+    <p><strong>DENTPRAC (Scottish Dental Practices)</strong></p>
+    <table border="1" cellspacing="1" cellpadding="3"   id="dentprac">
+        <tbody>
+            <tr>
+                <td colspan="2">Position</td>
+                <td>Data item</td>
+                <td>Size</td>
+                <td>Comments</td>
+            </tr>
+            <tr>
+                <td>From</td>
+                <td>To</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>HB Cypher</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>7</td>
+                <td>Practice Code</td>
+                <td>6</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>42</td>
+                <td>Address Line 1</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>43</td>
+                <td>77</td>
+                <td>Address Line 2</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>78</td>
+                <td>112</td>
+                <td>Address Line 3</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>113</td>
+                <td>147</td>
+                <td>Address Line 4</td>
+                <td>35</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>148</td>
+                <td>155</td>
+                <td>Postcode</td>
+                <td>8</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>156</td>
+                <td>170</td>
+                <td>Telephone Number</td>
+                <td>15</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>171</td>
+                <td>178</td>
+                <td>Start Date</td>
+                <td>8</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>179</td>
+                <td>186</td>
+                <td>End Date</td>
+                <td>8</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><strong>Optprac</strong></p>
+    <table border="1" cellspacing="1" cellpadding="3"   id="optprac">
+      <tbody>
+        <tr>
+          <td colspan="2">Position</td>
+          <td>Data item</td>
+          <td>Size</td>
+          <td>Comments</td>
+        </tr>
+        <tr>
+          <td>From</td>
+          <td>To</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>HB Cypher</td>
+          <td>1</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>6</td>
+          <td>Practice List Number</td>
+          <td>5</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>12</td>
+          <td>Location Number</td>
+          <td>6</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>82</td>
+          <td>Name</td>
+          <td>70</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>83</td>
+          <td>117</td>
+          <td>Address Line 1</td>
+          <td>35</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>118</td>
+          <td>152</td>
+          <td>Address Line 2</td>
+          <td>35</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>153</td>
+          <td>187</td>
+          <td>Address Line 3</td>
+          <td>35</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>188</td>
+          <td>222</td>
+          <td>Address Line 4</td>
+          <td>35</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>223</td>
+          <td>230</td>
+          <td>Postcode</td>
+          <td>8</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>231</td>
+          <td>280</td>
+          <td>Telephone Number</td>
+          <td>50</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>281</td>
+          <td>288</td>
+          <td>Start Date</td>
+          <td>8</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>289</td>
+          <td>296</td>
+          <td>End Date</td>
+          <td>8</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p><strong>Optref</strong></p>
+    <table border="1" cellspacing="1" cellpadding="3"   id="optref">
+    <tbody>
+      <tr>
+        <td colspan="2">Position</td>
+        <td>Data    item</td>
+        <td>Size</td>
+        <td>Comments</td>
+      </tr>
+      <tr>
+        <td>From</td>
+        <td>To</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>HB    Cypher</td>
+        <td>1</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>6</td>
+        <td>Opthalmic    List Number</td>
+        <td>5</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>12</td>
+        <td>GOC    Number</td>
+        <td>6</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>17</td>
+        <td>Practice    List Number</td>
+        <td>5</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>23</td>
+        <td>Location    Number</td>
+        <td>6</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>58</td>
+        <td>Title</td>
+        <td>35</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>59</td>
+        <td>93</td>
+        <td>Forename</td>
+        <td>35</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>94</td>
+        <td>128</td>
+        <td>Middle    Names</td>
+        <td>35</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>129</td>
+        <td>163</td>
+        <td>Surname</td>
+        <td>35</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>164</td>
+        <td>171</td>
+        <td>Start    Date</td>
+        <td>8</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>172</td>
+        <td>179</td>
+        <td>End    Date</td>
+        <td>8</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
