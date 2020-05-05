@@ -209,7 +209,7 @@ def sr_output_string(keystr, valstr):
     if keystr == None or keystr == '':
         print('%s' % (valstr))
     else:
-        print('[%s] %s' % (keystr, valstr))
+        print('[[%s]] %s' % (keystr, valstr))
 
 
 # ---------------------------------------------------------------------
