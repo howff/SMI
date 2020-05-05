@@ -19,7 +19,34 @@ Simply run `SrJsonMongoToText.py` giving it the name of a JSON file.
 The JSON file should be a single document from MongoDB, or it should be an array of documents.
 If given an array of documents it will write the output for each document to a separate file named by SOPInstanceUID.
 
-NB. to turn MongoDB output into proper array of JSON you need to
+# How to prepare data (simple version)
+
+To extract from MongoDB
+
+```
+const DBNAME="dicom"
+const COLLNAME="image_SR"
+conn = new Mongo();
+db = conn.getDB('admin').auth(username,password);
+db = conn.getDB(DBNAME);
+coll = db.getCollection(COLLNAME);
+print("Feb 2015 size:\t" + coll.count( {'StudyDate':/^201502/} ) +" documents\n");
+cursor = coll.aggregate( [
+  { "$match":  $and: [ { 'StudyDate': /^201[567]02/ } , { 'ModalitiesInStudy': /(CT|MR)/ } ] },
+  { "$sample": { 'size': 5000 } } ],
+  { allowDiskUse: true }
+);
+while (cursor.hasNext())
+{
+   printjson(cursor.next());
+}
+```
+
+The ModalitiesInStudy value takes the form "nn" or "nn\mm" (upto 5 values have been seen)
+where each can be SR, CR, PR, DX, IO, OT, NM, PT, CT, PX, RF, MR, US, XA, MG, etc.
+For example, "NM\CT\SR"
+
+To turn MongoDB output into proper array of JSON you need to
 ```
 sed -e 's/ObjectID(\([^)]*\))/\1/' -s 's/NumberLong(\([^)]*\))/\1/'
 sed -e '1i['  -e '$a]'  -e 's^}$/},/'
