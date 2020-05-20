@@ -1,3 +1,5 @@
+# DICOM Structured Reports Processing
+
 # DicomJsonToSemEHR
 
 This project aims to build a workflow which will
@@ -18,6 +20,36 @@ The tool had to be modified to work with JSON data as output from MongoDB.
 Simply run `SrJsonMongoToText.py` giving it the name of a JSON file.
 The JSON file should be a single document from MongoDB, or it should be an array of documents.
 If given an array of documents it will write the output for each document to a separate file named by SOPInstanceUID.
+
+# Output file format
+
+The output file is the plain text extracted from the SR.
+Any tags which may be of use are also output inside `[[  ]]` brackets.
+The list of tags to include/ignore is configurable inside the script.
+Example output document:
+
+```
+[[Document name]] 1.2.3.4.5
+[[Study Description]] XR Chest
+[[Study Date]] 20170102
+[[Patient Name]] Mr Arthur Boal
+[[Patient Sex]] M
+Radiology Report
+[[Person Observer Name]] Dr. Z MacDonald
+Findings
+[[Finding]]
+RADIOLOGY REPORT
+CHI NUMBER: 12345 Examination Number: 54321 Examination Date: 02/01/2017
+Name: Boal, Arthur
+Examination: XR Chest
+Clinical Indication
+GP ref - breathing difficulties
+Report:
+Chest.
+Examined the patient's chest. No evidence of problems.
+Verified by: Dr. Y MacDougal
+[[Observation Date and Time]] 20170102123456.000000
+```
 
 # How to prepare data (simple version)
 
@@ -47,12 +79,15 @@ where each can be SR, CR, PR, DX, IO, OT, NM, PT, CT, PX, RF, MR, US, XA, MG, et
 For example, "NM\CT\SR"
 
 To turn MongoDB output into proper array of JSON you need to
+remove the Mongo ObjectID and NumberLong functions, then
+convert each entry into an array item.
+
 ```
 sed -e 's/ObjectID(\([^)]*\))/\1/' -s 's/NumberLong(\([^)]*\))/\1/'
 sed -e '1i['  -e '$a]'  -e 's^}$/},/'
 ```
 
-# How to run
+# How to run (old version, no longer needed)
 
 * Get a DICOM SR file
 * Edit default.yaml with the correct paths
