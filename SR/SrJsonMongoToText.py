@@ -232,8 +232,10 @@ def sr_parse_key(json_dict, json_key):
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('Date', ''))
                     elif value_type == 'TEXT':
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('TextValue', ''))
-                    elif value_type == 'NUM':
+                    elif value_type == 'NUM' and 'MeasuredValueSequence' in cs_item:
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_MeasuredValueSequence(cs_item['MeasuredValueSequence']))
+                    elif value_type == 'NUM' and 'NumericValue' in cs_item:
+                        sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), cs_item.get('NumericValue'))
                     elif value_type == 'CODE':
                         sr_output_string(Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptNameCodeSequence']), Sr.sr_decode_ConceptNameCodeSequence(cs_item['ConceptCodeSequence']))
                     elif value_type == 'UIDREF':
