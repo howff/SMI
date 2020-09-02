@@ -64,7 +64,12 @@ db = conn.getDB(DBNAME);
 coll = db.getCollection(COLLNAME);
 print("Feb 2015 size:\t" + coll.count( {'StudyDate':/^201502/} ) +" documents\n");
 cursor = coll.aggregate( [
-  { "$match":  $and: [ { 'StudyDate': /^201[567]02/ } , { 'ModalitiesInStudy': /(CT|MR)/ } ] },
+  { "$match":  $and:
+    [
+      { 'StudyDate': /^201[567]02/ } ,
+      { 'ModalitiesInStudy': /(CT|MR)/ } ,
+      { 'ContentSequence.ConceptNameCodeSequence.CodeMeaning': 'Finding' }
+    ] },
   { "$sample": { 'size': 5000 } } ],
   { allowDiskUse: true }
 );
