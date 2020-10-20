@@ -87,6 +87,7 @@ if __name__ == '__main__':
     # Quick way to make a string from the results
     # but this would include all attributes and doesn't allow prefixes to be added.
     #s=' '.join([x['text'] for x in obj])
+    print('RETURNED %s' % ' '.join([x['text'] for x in obj]))
 
     # Extract the text fragments from the DICOM object.
     # Append all text fragments into a single string.
