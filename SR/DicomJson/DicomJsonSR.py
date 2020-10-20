@@ -13,6 +13,7 @@
 # Return a new field is_attr=True for attributes
 # Return a new field desc=Text for the concept name
 
+import re
 import json
 import yaml
 from pydicom.datadict import keyword_for_tag
@@ -48,14 +49,29 @@ def test_decode_PNAME():
 # i.e. given this anydict get_val will returns 'anyvalue'
 # anydict = { 'anykey': { 'vr': 'ST', 'val': 'anyvalue' } }
 # If it doesn't exist then an empty string is returned (instead of exception).
+# Note that anykey should be a dicom tag number string but that
+# anydict might have that key present with a number or a name
+# eg. either { '00100008': stuff } OR { 'Study': stuff }
 
 def get_vr(anydict, anykey):
+    if not anykey in anydict:
+        anykey = dicom_tag_number_to_name(anykey)
     try:
         return anydict[anykey]['vr']
     except:
         return ''
 
 def get_val(anydict, anykey):
+    print('get_val %s is %s' % (anykey, anydict.get(anykey,"not present")))
+    if not anykey in anydict:
+        anykey = dicom_tag_number_to_name(anykey)
+    print(' becomes get_val %s is %s' % (anykey, anydict.get(anykey,"not present")))
+    if anykey in anydict and 'val' in anydict[anykey]:
+        print('key %s has a "val" = %s' % (anykey, anydict[anykey]['val']))
+    else:
+        print('key %s has no "val"' % anykey)
+    if not isinstance(anydict[anykey], dict):
+        return anydict[anykey] # XXX if there's no 'vr' and 'val' maybe just use the actual plain text string value of the key
     try:
         return anydict[anykey]['val']
     except:
@@ -63,7 +79,38 @@ def get_val(anydict, anykey):
 
 def test_get_val():
     assert get_val( { 'anykey': { 'vr': 'ST', 'val': 'anyvalue' } }, 'anykey' ) == 'anyvalue'
-    assert get_val({'nokey': {'vr': 'ST', 'val': 'anyvalue'}}, 'anykey') == ''
+    assert get_val( { 'StudyDate': { 'vr': 'ST', 'val': 'anyvalue' } }, '00080020' ) == 'anyvalue'
+    assert get_val( { 'StudyDate': { 'vr': 'ST', 'val': 'anyvalue' } }, 'StudyDate' ) == 'anyvalue'
+    #assert get_val( { '00080020': { 'vr': 'ST', 'val': 'anyvalue' } }, 'StudyDate' ) == 'anyvalue' # reverse lookup is not yet implemented
+    assert get_val( { 'nokey':  { 'vr': 'ST', 'val': 'anyvalue' } }, 'anykey') == ''
+
+
+# ---------------------------------------------------------------------
+
+# Convert a tag number (as an 8-digit hex string) to a name.
+# Matches nnnnmmmm OR nnnn,mmmm OR (nnnn,mmmm) OR (nnnn,mmmm:
+# because we see examples such as:
+#  "(07a1,0010)-PrivateCreator"
+#  "(07a1,1002:ELSCINT1)-Unknown"
+# also sometimes we get the name not the number so just return it untouched.
+
+def dicom_tag_number_to_name(tag):
+    match = re.match(r'^\({0,1}([0-9a-fA-F]{4}),{0,1}([0-9a-fA-F]{4})[\):]{0,1}', tag)
+    if match:
+        tagname = keyword_for_tag(match.group(1)+match.group(2))
+        if tagname == "": tagname = "PrivateCreator"
+        return tagname
+    # If no number is found then assume it's already a name
+    return tag
+
+def test_dicom_tag_number_to_name():
+    assert dicom_tag_number_to_name('00080020') == 'StudyDate'
+    assert dicom_tag_number_to_name('(00080020)') == 'StudyDate'
+    assert dicom_tag_number_to_name('(0008,0020)') == 'StudyDate'
+    assert dicom_tag_number_to_name('(0008,0020:stuff)') == 'StudyDate'
+    assert dicom_tag_number_to_name('(0008,0020)-nonsense') == 'StudyDate'
+    assert dicom_tag_number_to_name('(0008,0020:stuff)-nonsense') == 'StudyDate'
+    assert dicom_tag_number_to_name('(0008,0020:stuff)-nonsense') == 'StudyDate'
 
 
 # ---------------------------------------------------------------------
@@ -83,12 +130,19 @@ def test_get_val():
 #    ]
 #  },
 # Returns a tuple ('DT.06', 'Consultation Report')
+# However note that the dict passed in may have keys as numbers or names
+# so we need to check for both, eg. '00080010' or 'Study' both possible.
 
+def gg(adict, atag):
+    if atag in adict: return adict[atag]
+    name = dicom_tag_number_to_name(atag)
+    if name in adict: return adict[name]
+    return None
 
 def get_CodeValue_CodeMeaning(codedict):
     try:
-        codevalue = codedict['val'][0][Tagnum_CodeValue]['val']
-        codemeaning = codedict['val'][0][Tagnum_CodeMeaning]['val']
+        codevalue = gg(codedict['val'][0], Tagnum_CodeValue)['val'] # codedict['val'][0][Tagnum_CodeValue]['val']
+        codemeaning = gg(codedict['val'][0], Tagnum_CodeMeaning)['val'] # codedict['val'][0][Tagnum_CodeMeaning]['val']
         return (codevalue, codemeaning)
     except:
         return (None, None)
@@ -96,22 +150,31 @@ def get_CodeValue_CodeMeaning(codedict):
 
 def get_ConceptNameCodeSequence(cncs_dict):
     # If we are passed the parent dict which contains the CNCS then select it.
-    if Tagnum_ConceptNameCodeSequence in cncs_dict:
-        cncs_dict = cncs_dict[Tagnum_ConceptNameCodeSequence]
+    cncs = gg(cncs_dict, Tagnum_ConceptNameCodeSequence)
+    if cncs != None:
+        cncs_dict = cncs
+    #WAS: if Tagnum_ConceptNameCodeSequence in cncs_dict:
+    #    cncs_dict = cncs_dict[Tagnum_ConceptNameCodeSequence]
     # Look for the specific children and return their values.
     return get_CodeValue_CodeMeaning(cncs_dict)
 
 
 def get_ConceptCodeSequence(ccs_dict):
     # If we are passed the parent dict which contains the CCS then select it.
-    if Tagnum_ConceptCodeSequence in ccs_dict:
-        ccs_dict = ccs_dict[Tagnum_ConceptCodeSequence]
+    ccs = gg(ccs_dict, Tagnum_ConceptCodeSequence)
+    if ccs != None:
+        ccs_dict = ccs
+    #WAS: if Tagnum_ConceptCodeSequence in ccs_dict:
+    #    ccs_dict = ccs_dict[Tagnum_ConceptCodeSequence]
     # Look for the specific children and return their values.
     return get_CodeValue_CodeMeaning(ccs_dict)
 
 def test_get_ConceptCodeSequence():
     assert get_ConceptCodeSequence( { Tagnum_ConceptCodeSequence : {
         'val': [ { Tagnum_CodeValue: { 'val': 'a'}, Tagnum_CodeMeaning: {'val': 'b' } } ]
+        } } ) == ('a', 'b')
+    assert get_ConceptCodeSequence( { 'ConceptCodeSequence' : {
+        'val': [ { 'CodeValue': { 'val': 'a'}, 'CodeMeaning': {'val': 'b' } } ]
         } } ) == ('a', 'b')
 
 
@@ -175,16 +238,22 @@ def text_and_personal_content(self, item):
     # Check for any tags which we don't know about and may actually want to extract
     for tag in item:
         if not tag in Tagnum_extraction_list:
-            raise NotImplementedError("ERROR Unexpected DICOM tag in doc: %s = %s" % (tag, keyword_for_tag(tag)))
+            print('** WARNING unexpected DICOM tag number "%s" = name "%s" (if this is a useful tag add it to the program otherwise safe to ignore)' % (tag, dicom_tag_number_to_name(tag)))
+            #raise NotImplementedError("ERROR Unexpected DICOM tag in doc: %s = %s" % (tag, dicom_tag_number_to_name(tag)))
 
     # First, can we return any content which is an attribute of this item
     for tag in Tagnum_extraction_list:
+        if Tagnum_extraction_list[tag]['to_extract']:
+            print('Looking for %s OR %s in %s' % (tag, dicom_tag_number_to_name(tag), item))
+            xx = get_val(item, tag)
+            print("Should find %s" % item.get(tag, "Shouldn't find anything") )
+            print("Found %s" % xx)
         if Tagnum_extraction_list[tag]['to_extract'] and \
-                tag in item and \
                 get_val(item, tag):
+            print('Found %s' % tag)
             is_personal = Tagnum_extraction_list[tag]['is_personal']
             val = get_val(item, tag)
-            vr  = get_vr(item,tag)
+            vr  = get_vr(item, tag)
             # Decode strings to human-readable
             # XXX should we preserve encoding for downstream processing?
             # XXX could also decode DA dates (YYYYMMDD) and TM times (HHMMSS) ?
@@ -197,7 +266,7 @@ def text_and_personal_content(self, item):
             ret_dict['is_personal'] = is_personal
             ret_dict['is_attr'] = True
             # Use the DICOM tag name as the concept for the attr as it's not in the file
-            ret_dict['concept'] = keyword_for_tag(tag)
+            ret_dict['concept'] = dicom_tag_number_to_name(tag)
             yield ret_dict
             # No return here, we continue processing the item itself
 
