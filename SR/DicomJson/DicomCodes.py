@@ -121,6 +121,7 @@ Tagnum_ConceptCodeSequence = "0040A168"
 Tagnum_ConceptNameCodeSequence = "0040A043"
 Tagnum_ContentDate = "00080023"
 Tagnum_ContentSequence = "0040A730"
+Tagnum_ContentTemplateSequence = "0040A504"
 Tagnum_ContentTime = "00080033"
 Tagnum_ContinuityOfContent = "0040A050"
 Tagnum_CurrentRequestedProcedureEvidenceSequence = "0040A375"
@@ -128,12 +129,17 @@ Tagnum_InstanceCreationDate = "00080012"
 Tagnum_InstanceCreationTime = "00080013"
 Tagnum_InstanceCreatorUID = "00080014"
 Tagnum_InstanceNumber = "00200013"
+Tagnum_InstitutionName = "00080080"
+Tagnum_IssuerOfPatientID = "00100021"
 Tagnum_Manufacturer = "00080070"
 Tagnum_MeasuredValueSequence = "0040A300"
 Tagnum_MeasurementUnitsCodeSequence = "004008EA"
+Tagnum_ModalitiesInStudy = "00080061"
 Tagnum_Modality = "00080060"
+Tagnum_NumberOfStudyRelatedInstances = "00201208"
 Tagnum_NumericValue = "0040A30A"
 Tagnum_ObservationDateTime = "0040A032"
+Tagnum_OtherPatientIDsSequence = "00101002"
 Tagnum_PatientBirthDate = "00100030"
 Tagnum_PatientID = "00100020"
 Tagnum_PatientName = "00100010"
@@ -144,6 +150,7 @@ Tagnum_ReferencedPerformedProcedureStepSequence = "00081111"
 Tagnum_ReferencedSOPSequence = "00081199"
 Tagnum_ReferringPhysicianName = "00080090"
 Tagnum_RelationshipType = "0040A010"
+Tagnum_SeriesDate = "00080021"
 Tagnum_SeriesDescription = "0008103E"
 Tagnum_SeriesInstanceUID = "0020000E"
 Tagnum_SeriesNumber = "00200011"
@@ -169,57 +176,124 @@ Tagnum_VerificationFlag = "0040A493"
 # NOTE: keep this list in sync with the names above (yes I know that's bad).
 
 Tagnum_extraction_list = {
+	"_id": {'to_extract': False, 'is_personal': False},     # an artefact of MongoDB
+	"header": {'to_extract': False, 'is_personal': False},  # added by the SMI Mongo import service
 	Tagnum_AccessionNumber: {'to_extract': False, 'is_personal': False},
+	'AccessionNumber': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodeMeaning: {'to_extract': False, 'is_personal': False},
+	'CodeMeaning': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodeValue: {'to_extract': False, 'is_personal': False},
+	'CodeValue': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodingSchemeDesignator: {'to_extract': False, 'is_personal': False},
+	'CodingSchemeDesignator': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodingSchemeIdentificationSequence: {'to_extract': False, 'is_personal': False},
+	'CodingSchemeIdentificationSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodingSchemeName: {'to_extract': False, 'is_personal': False},
+	'CodingSchemeName': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodingSchemeResponsibleOrganization: {'to_extract': False, 'is_personal': False},
+	'CodingSchemeResponsibleOrganization': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodingSchemeUID: {'to_extract': False, 'is_personal': False},
+	'CodingSchemeUID': {'to_extract': False, 'is_personal': False},
 	Tagnum_CodingSchemeVersion: {'to_extract': False, 'is_personal': False},
+	'CodingSchemeVersion': {'to_extract': False, 'is_personal': False},
 	Tagnum_CompletionFlag: {'to_extract': False, 'is_personal': False},
+	'CompletionFlag': {'to_extract': False, 'is_personal': False},
 	Tagnum_ConceptCodeSequence: {'to_extract': False, 'is_personal': False},
+	'ConceptCodeSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_ConceptNameCodeSequence: {'to_extract': False, 'is_personal': False},
+	'ConceptNameCodeSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_ContentDate: {'to_extract': True, 'is_personal': True},
+	'ContentDate': {'to_extract': True, 'is_personal': True},
 	Tagnum_ContentSequence: {'to_extract': False, 'is_personal': False},
+	'ContentSequence': {'to_extract': False, 'is_personal': False},
+	Tagnum_ContentTemplateSequence: {'to_extract': False, 'is_personal': False},
+	'ContentTemplateSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_ContentTime: {'to_extract': True, 'is_personal': True},
+	'ContentTime': {'to_extract': True, 'is_personal': True},
 	Tagnum_ContinuityOfContent: {'to_extract': False, 'is_personal': False},
+	'ContinuityOfContent': {'to_extract': False, 'is_personal': False},
 	Tagnum_CurrentRequestedProcedureEvidenceSequence: {'to_extract': False, 'is_personal': False},
+	'CurrentRequestedProcedureEvidenceSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_InstanceCreationDate: {'to_extract': True, 'is_personal': True},
+	'InstanceCreationDate': {'to_extract': True, 'is_personal': True},
 	Tagnum_InstanceCreationTime: {'to_extract': True, 'is_personal': True},
+	'InstanceCreationTime': {'to_extract': True, 'is_personal': True},
 	Tagnum_InstanceCreatorUID: {'to_extract': True, 'is_personal': False},
+	'InstanceCreatorUID': {'to_extract': True, 'is_personal': False},
 	Tagnum_InstanceNumber: {'to_extract': True, 'is_personal': False},
+	'InstanceNumber': {'to_extract': True, 'is_personal': False},
+	Tagnum_InstitutionName: {'to_extract': False, 'is_personal': False},
+	'InstitutionName': {'to_extract': False, 'is_personal': False},
+	Tagnum_IssuerOfPatientID: {'to_extract': False, 'is_personal': False},
+	'IssuerOfPatientID': {'to_extract': False, 'is_personal': False},
 	Tagnum_Manufacturer: {'to_extract': False, 'is_personal': False},
+	'Manufacturer': {'to_extract': False, 'is_personal': False},
 	Tagnum_MeasuredValueSequence: {'to_extract': False, 'is_personal': False},
+	'MeasuredValueSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_MeasurementUnitsCodeSequence: {'to_extract': False, 'is_personal': False},
+	'MeasurementUnitsCodeSequence': {'to_extract': False, 'is_personal': False},
+	Tagnum_ModalitiesInStudy: {'to_extract': False, 'is_personal': False},
+	'ModalitiesInStudy': {'to_extract': False, 'is_personal': False},
 	Tagnum_Modality: {'to_extract': False, 'is_personal': False},
+	'Modality': {'to_extract': False, 'is_personal': False},
+	Tagnum_NumberOfStudyRelatedInstances: {'to_extract': False, 'is_personal': False},
+	'NumberOfStudyRelatedInstances': {'to_extract': False, 'is_personal': False},
 	Tagnum_NumericValue: {'to_extract': False, 'is_personal': False},
+	'NumericValue': {'to_extract': False, 'is_personal': False},
 	Tagnum_ObservationDateTime: {'to_extract': True, 'is_personal': True},
+	'ObservationDateTime': {'to_extract': True, 'is_personal': True},
+	Tagnum_OtherPatientIDsSequence: {'to_extract': False, 'is_personal': False},
+	'OtherPatientIDsSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_PatientBirthDate: {'to_extract': True, 'is_personal': True},
+	'PatientBirthDate': {'to_extract': True, 'is_personal': True},
 	Tagnum_PatientID: {'to_extract': True, 'is_personal': True},
+	'PatientID': {'to_extract': True, 'is_personal': True},
 	Tagnum_PatientName: {'to_extract': True, 'is_personal': True},
+	'PatientName': {'to_extract': True, 'is_personal': True},
 	Tagnum_PatientSex: {'to_extract': True, 'is_personal': True},
+	'PatientSex': {'to_extract': True, 'is_personal': True},
 	Tagnum_PerformedProcedureCodeSequence: {'to_extract': False, 'is_personal': False},
+	'PerformedProcedureCodeSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_PersonName: {'to_extract': False, 'is_personal': True}, # Names are extracted elsewhere so don't extract here
+	'PersonName': {'to_extract': False, 'is_personal': True}, # Names are extracted elsewhere so don't extract here
 	Tagnum_ReferencedPerformedProcedureStepSequence: {'to_extract': False, 'is_personal': False},
+	'ReferencedPerformedProcedureStepSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_ReferencedSOPSequence: {'to_extract': False, 'is_personal': False},
+	'ReferencedSOPSequence': {'to_extract': False, 'is_personal': False},
 	Tagnum_ReferringPhysicianName: {'to_extract': True, 'is_personal': True},
+	'ReferringPhysicianName': {'to_extract': True, 'is_personal': True},
 	Tagnum_RelationshipType: {'to_extract': False, 'is_personal': False},
+	'RelationshipType': {'to_extract': False, 'is_personal': False},
+	Tagnum_SeriesDate: {'to_extract': False, 'is_personal': False},
+	'SeriesDate': {'to_extract': False, 'is_personal': False},
 	Tagnum_SeriesDescription: {'to_extract': True, 'is_personal': False},
+	'SeriesDescription': {'to_extract': True, 'is_personal': False},
 	Tagnum_SeriesInstanceUID: {'to_extract': True, 'is_personal': False},
+	'SeriesInstanceUID': {'to_extract': True, 'is_personal': False},
 	Tagnum_SeriesNumber: {'to_extract': True, 'is_personal': False},
+	'SeriesNumber': {'to_extract': True, 'is_personal': False},
 	Tagnum_SOPClassUID: {'to_extract': True, 'is_personal': False},
+	'SOPClassUID': {'to_extract': True, 'is_personal': False},
 	Tagnum_SOPInstanceUID: {'to_extract': True, 'is_personal': False},
+	'SOPInstanceUID': {'to_extract': True, 'is_personal': False},
 	Tagnum_SpecificCharacterSet: {'to_extract': False, 'is_personal': False},
+	'SpecificCharacterSet': {'to_extract': False, 'is_personal': False},
 	Tagnum_StudyDate: {'to_extract': True, 'is_personal': False},
+	'StudyDate': {'to_extract': True, 'is_personal': False},
 	Tagnum_StudyDescription: {'to_extract': True, 'is_personal': False},
+	'StudyDescription': {'to_extract': True, 'is_personal': False},
 	Tagnum_StudyID: {'to_extract': True, 'is_personal': False},
+	'StudyID': {'to_extract': True, 'is_personal': False},
 	Tagnum_StudyInstanceUID: {'to_extract': True, 'is_personal': False},
+	'StudyInstanceUID': {'to_extract': True, 'is_personal': False},
 	Tagnum_StudyTime: {'to_extract': True, 'is_personal': False},
+	'StudyTime': {'to_extract': True, 'is_personal': False},
 	Tagnum_TextValue: {'to_extract': False, 'is_personal': False},
+	'TextValue': {'to_extract': False, 'is_personal': False},
 	Tagnum_ValueType: {'to_extract': False, 'is_personal': False},
+	'ValueType': {'to_extract': False, 'is_personal': False},
 	Tagnum_VerificationFlag: {'to_extract': False, 'is_personal': False},
+	'VerificationFlag': {'to_extract': False, 'is_personal': False},
 }
 
 
@@ -267,20 +341,18 @@ DataTypeName_map = {
 # The following has been taken from the DicomScope file codes.dic
 # (you need to install it and find the file in /usr/share/dicomscope)
 
-# This text file contains a dictionary specifying all codes which can be
-# selected from the DICOMscope 3.x application.  Many codes (at least the
-# code meanings) are directly taken from the current "letter ballot" ver-
-# sion of Supplement 57 "DICOM Content Mapping Resource (DCMR)".
+# A dictionary specifying all codes which can be selected from the
+# DICOMscope 3.x application.  Many codes (at least the code meanings)
+# are directly taken from the current "letter ballot" version of
+# Supplement 57 "DICOM Content Mapping Resource (DCMR)".
 #
 # Each line represents an entry in the code dictionary.  Each line has 5
 # fields (Context Group, Coding Scheme Designator, Coding Scheme Version,
 # Code Value, Code Meaning).  Each field must be separated by a comma and
 # surrounded by quotation marks.
 #
-# Comments have a '#' at the beginning of the line.
-#
 # Tuples contain:
-# Context Group   Coding Scheme Designator   Version   Code Value   Code Meaning
+# Context Group,  Coding Scheme Designator,  Version,  Code Value,  Code Meaning
 #
 
 CodeValueToCodeMeaning_array = [
