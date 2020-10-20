@@ -3,10 +3,12 @@
 # in JSON format as extracted from the SMI MongoDB database.
 # Note that this is a specific format, not the same as that from dcm2json.
 
-# Usage: file.json
+# Usage: filename
 # The file can contain a single JSON dict, or an array of dict.
 #   single dict - the output is written to the filename with .txt appended
 #   array of dict - the output is written to SOPInstanceUID.txt files.
+# If not an actual file then the filename is looked up in MongoDB
+# so you can specify a file in the database and read the JSON from there.
 
 # Instructions for modification:
 #  Look through the items in sr_keys_to_ignore and if you decide that one of
@@ -18,9 +20,11 @@
 
 import collections
 import json
+import os
 import re
 import sys
 from DicomJson import Sr
+from pymongo import MongoClient
 
 
 # ---------------------------------------------------------------------
@@ -294,9 +298,21 @@ if __name__ == '__main__':
     else:
         filename = 'sampleSR.json'
 
-    # Read the whole document into memory
-    with open(filename, 'r') as fd:
-        json_doc = json.loads(fd.read())
+    # Read the whole document into memory from file or MongoDB
+    try:
+        with open(filename, 'r') as fd:
+            json_doc = json.loads(fd.read())
+    except OSError as e:
+        #print('Cannot read file, trying Mongo')
+        mongo_db_name = 'dicom'
+        mongo_collection_name = 'image_SR'
+        mongo_username = os.environ.get('MONGO_USERNAME')
+        mongo_password = os.environ.get('MONGO_PASSWORD')
+        mongo_db = MongoClient(host='nsh-smi02', username='reader', password=mongo_password, authSource='admin')
+        mongo_collection = mongo_db[mongo_db_name][mongo_collection_name]
+        for mongo_record in mongo_collection.find({ "header.DicomFilePath" : filename }):
+            json_doc = mongo_record
+            filename = json_doc['SopInstanceUID']
 
     # If it is an array then process each item separately
     if isinstance(json_doc, list):
