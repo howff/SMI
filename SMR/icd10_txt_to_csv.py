@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 
-# Download the ICD-10 table from
-#  https://www.isdscotland.org/Products-and-Services/Data-Definitions-and-References/National-Reference-Files/Nat-Ref-Files/icd10?64975703
-# and convert it into CSV format using the description from
-#  https://www.isdscotland.org/Products-and-Services/Data-Definitions-and-References/National-Reference-Files/SMR-reference-file-layouts.asp
-# as converted to SMR-reference-file-layouts.html
-
-# See also:
-#  PyMedTermino-0.3.3.tar.gz (from pypi)
-#  icd10-cm-0.0.4.tar.gz (from pypi)
+# DO NOT USE, this is the old version, use txt_to_csv.py instead.
 
 import struct
 
@@ -20,7 +12,7 @@ fieldstruct = struct.Struct(fmtstring)
 #print('fmtstring: {!r}, recsize: {} chars'.format(fmtstring, fieldstruct.size))
 
 print('code1,code2,code1b,code2b,recordtype,lastupdated,description,smr01applic,smr01sex,smr01rare,smr01minage,smr01maxage,smr01admittype10,smr01discharge,smr01maxwait,smr01maxstay,smr02a,smr02b,smr02c,smr02d,smr02e,smr04applic,smr04sex,smr04rare,smi04minage,smr04maxage,smr04maxstay,smr11applic,smr11sex,smr11discharge,smr11start,smr11end,fulldescription')
-fd = open('icd10_64975703.txt', 'r')
+fd = open('IDS/icd10.txt', 'r')
 for line in fd:
   if len(line) < fieldstruct.size:
   	line += ' '*(fieldstruct.size - len(line))
